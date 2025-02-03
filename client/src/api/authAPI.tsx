@@ -16,7 +16,7 @@ const login = async (userInfo: UserLogin) => {
   }
 
   const data = await response.json();
-
+  console.log("Token Data", data);
   return data;
 }
 

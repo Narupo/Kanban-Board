@@ -17,14 +17,15 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
   try {
     // Verify the token and extract user data
-    const secret = process.env.JWT_SECRET as string;
+    const secret = process.env.JWT_SECRET_KEY as string;
     const decoded = jwt.verify(token, secret) as JwtPayload;
-
+    
     // Attach user data to request object for use in protected routes
     req.user = decoded;
 
     return next(); // Move to the next middleware or route handler
   } catch (error) {
+    console.error(error);
     return res.status(403).json({ message: 'Invalid or expired token.' });
   }
 };
