@@ -26,7 +26,7 @@ export const login = async (req: Request, res: Response) => {
   const payload = { username };
   const token = jwt.sign(payload, process.env.JWT_SECRET as string, { expiresIn: '1h' });
 
-  res.json({ token });
+  return res.json({ token });
 };
 
 const router = Router();
